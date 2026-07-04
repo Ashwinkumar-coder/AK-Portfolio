@@ -39,7 +39,7 @@ const Hero = ({ activeTheme, setActiveTheme, socket }) => {
           <p className="text-base sm:text-lg text-gray-400 max-w-xl leading-relaxed font-sans select-none flex flex-wrap gap-x-1 gap-y-0.5">
             <LetterHover text="Full Stack Developer with " />
             <LetterHover text="1.5+ years of experience" className="text-accent font-semibold" />
-            <LetterHover text=" designing, building, and deploying scalable web applications using React.js, Node.js, and Python. Passionate about clean architecture, responsive UIs, and integrating intelligence into modern web experiences." />
+            <LetterHover text="designing, building, and deploying scalable web applications using React.js, Node.js, and Python. Passionate about clean architecture, responsive UIs, and integrating intelligence into modern web experiences." />
           </p>
 
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 w-full sm:w-auto pt-2">
@@ -98,7 +98,7 @@ const Hero = ({ activeTheme, setActiveTheme, socket }) => {
         {/* Right: Profile Portrait */}
         <div className="lg:col-span-5 w-full flex flex-col items-center gap-6">
           {/* Portrait Container */}
-          <div className="relative w-64 h-64 sm:w-72 sm:h-72 rounded-2xl overflow-hidden border border-white/5 shadow-2xl group transition-all duration-500 hover:border-accent/40 hover:shadow-accent/10">
+          <div className="relative w-80 h-80 sm:w-96 sm:h-96 lg:w-[360px] lg:h-[380px] rounded-2xl overflow-hidden border border-white/5 shadow-2xl group transition-all duration-500 hover:border-accent/40 hover:shadow-accent/10">
             <img
               src="/ashwin.png"
               alt="Ashwin Kumar B"
