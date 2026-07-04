@@ -100,7 +100,7 @@ const Hero = ({ activeTheme, setActiveTheme, socket }) => {
           {/* Portrait Container */}
           <div className="relative w-80 h-80 sm:w-96 sm:h-96 lg:w-[360px] lg:h-[380px] rounded-2xl overflow-hidden border border-white/5 shadow-2xl group transition-all duration-500 hover:border-accent/40 hover:shadow-accent/10">
             <img
-              src="/ashwin.png"
+              src="ashwin.png"
               alt="Ashwin Kumar B"
               className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-103"
             />

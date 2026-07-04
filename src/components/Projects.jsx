@@ -11,7 +11,7 @@ const Projects = () => {
       title: "HealthCare Platform",
       subtitle: "Doctor Appointment & Diagnostic Management System",
       timeline: "Dec 2024 – May 2025",
-      image: "/healthcare.png",
+      image: "healthcare.png",
       tech: ["React.js", "Redux Toolkit", "Tailwind CSS"],
       description: "Developed a comprehensive digital healthcare portal supporting patient medical appointment booking (online and walk-in) and diagnostic facility tracking.",
       details: [
@@ -27,7 +27,7 @@ const Projects = () => {
       title: "Tifoh Meeting Space",
       subtitle: "Smart Meeting Room Booking & Synchronization System",
       timeline: "Jun 2025 – Nov 2025",
-      image: "/tifoh.png",
+      image: "tifoh.png",
       tech: ["React.js", "Node.js", "REST APIs", "Google Calendar API", "Microsoft Graph API"],
       description: "Built a multi-tenant enterprise conference space booking platform synchronized in real-time with outer calendars.",
       details: [
@@ -43,7 +43,7 @@ const Projects = () => {
       title: "PET Care Registry",
       subtitle: "Government Pet Registration & Vaccination Tracking",
       timeline: "Dec 2025 – Present",
-      image: "/petcare.png",
+      image: "petcare.png",
       tech: ["React.js", "Redux", "Node.js"],
       description: "Constructed a civic portal for registry tracking of domestic pets, vaccine history logs, and veterinarian appointments.",
       details: [
