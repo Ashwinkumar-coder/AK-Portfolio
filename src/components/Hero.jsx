@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ArrowRight, Sparkles, X } from 'lucide-react';
+import { ArrowRight, Sparkles, X, Download } from 'lucide-react';
 import LetterHover from './LetterHover';
 import { GithubIcon, LinkedinIcon } from './SocialIcons';
 import Experience from './Experience';
@@ -67,6 +67,15 @@ const Hero = ({ activeTheme, setActiveTheme, socket }) => {
             >
               Let's Connect
             </button>
+
+            <a
+              href="/resume/resume.pdf"
+              download="Ashwin_Kumar_Resume.pdf"
+              className="glass-card hover:bg-gray-900 border-gray-900 text-white font-semibold px-8 py-4 rounded-xl text-base transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer"
+            >
+              <Download className="w-4 h-4 text-accent" />
+              <span>Download CV</span>
+            </a>
           </div>
 
           {/* Social Icons & Quick Stats */}

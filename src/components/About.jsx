@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import {
   BookOpen, Cpu, Database, Layout, Server, Settings, ShieldCheck,
-  Code, Terminal, GitBranch, Sliders, Globe, AppWindow
+  Code, Terminal, GitBranch, Sliders, Globe, AppWindow, Download
 } from 'lucide-react';
 import { GithubIcon } from './SocialIcons';
 import LetterHover from './LetterHover';
@@ -125,9 +125,20 @@ const About = () => {
               <p className="text-gray-300 leading-relaxed font-sans mb-4 select-none">
                 <LetterHover text="I am a Full Stack Developer with over 1.5 years of industry experience. I specialize in designing, developing, and deploying scalable web applications. My sweet spot lies at the junction of backend logic and frontend interactivity." />
               </p>
-              <p className="text-gray-300 leading-relaxed font-sans select-none">
+              <p className="text-gray-300 leading-relaxed font-sans mb-6 select-none">
                 <LetterHover text="I have a proven record of building and managing responsive layouts, REST APIs, and authentication pipelines, collaborating in agile environments, and implementing clean code methodologies." />
               </p>
+              
+              <div className="pt-2">
+                <a
+                  href="/resume/resume.pdf"
+                  download="Ashwin_Kumar_Resume.pdf"
+                  className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-accent/10 border border-accent/25 hover:bg-accent text-white font-semibold transition-all duration-300 cursor-pointer text-sm"
+                >
+                  <Download className="w-4 h-4" />
+                  <span>Download Resume / CV</span>
+                </a>
+              </div>
             </div>
 
             {/* Education Box */}

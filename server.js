@@ -128,6 +128,150 @@ app.post('/api/contact', async (req, res) => {
   }
 });
 
+// REST API endpoint for AI assistant chat
+app.post('/api/chat', async (req, res) => {
+  const { messages } = req.body;
+  if (!messages || !Array.isArray(messages)) {
+    return res.status(400).send('Invalid request');
+  }
+
+  res.setHeader('Content-Type', 'text/plain; charset=utf-8');
+  res.setHeader('Transfer-Encoding', 'chunked');
+  res.setHeader('Cache-Control', 'no-cache');
+
+  const userQuery = messages[messages.length - 1]?.content || '';
+  const queryLower = userQuery.toLowerCase();
+
+  const geminiKey = process.env.GEMINI_API_KEY;
+  const anthropicKey = process.env.ANTHROPIC_API_KEY;
+
+  if (geminiKey) {
+    try {
+      const response = await fetch(
+        `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:streamGenerateContent?alt=sse&key=${geminiKey}`,
+        {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            contents: messages.map(m => ({
+              role: m.role === 'assistant' ? 'model' : 'user',
+              parts: [{ text: m.content }]
+            })),
+            systemInstruction: {
+              parts: [{ text: `You are the professional executive assistant to Abakwe Carrington. Keep answers professional. Absolute rules: do NOT output asterisks, hashes, underscores, or bullet lists anywhere in your response. Organize in readable paragraphs. Keep it to 2-3 paragraphs. Stop scope: only discuss Abakwe.` }]
+            }
+          })
+        }
+      );
+
+      if (response.ok && response.body) {
+        const reader = response.body.getReader();
+        const decoder = new TextDecoder();
+        while (true) {
+          const { done, value } = await reader.read();
+          if (done) break;
+          const chunk = decoder.decode(value);
+          const lines = chunk.split('\n');
+          for (const line of lines) {
+            if (line.startsWith('data:')) {
+              try {
+                const dataJson = JSON.parse(line.substring(5).trim());
+                const text = dataJson.candidates?.[0]?.content?.parts?.[0]?.text;
+                if (text) {
+                  res.write(text);
+                }
+              } catch (e) {}
+            }
+          }
+        }
+        return res.end();
+      }
+    } catch (err) {
+      console.error("Gemini API error:", err);
+    }
+  } else if (anthropicKey) {
+    try {
+      const response = await fetch('https://api.anthropic.com/v1/messages', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'x-api-key': anthropicKey,
+          'anthropic-version': '2023-06-01'
+        },
+        body: JSON.stringify({
+          model: 'claude-3-haiku-20240307',
+          max_tokens: 600,
+          system: `You are the professional executive assistant to Abakwe Carrington. STRICT SCOPE: Only discuss Abakwe. DO NOT output asterisks, hashtags, or markdown formatting anywhere. Use blank line breaks between paragraphs.`,
+          messages: messages.map(m => ({ role: m.role, content: m.content })),
+          stream: true
+        })
+      });
+
+      if (response.ok && response.body) {
+        const reader = response.body.getReader();
+        const decoder = new TextDecoder();
+        let buffer = '';
+        while (true) {
+          const { done, value } = await reader.read();
+          if (done) break;
+          buffer += decoder.decode(value, { stream: true });
+          const lines = buffer.split('\n');
+          buffer = lines.pop();
+          for (const line of lines) {
+            if (line.startsWith('data:')) {
+              try {
+                const json = JSON.parse(line.slice(5).trim());
+                if (json.type === 'content_block_delta' && json.delta?.text) {
+                  res.write(json.delta.text);
+                }
+              } catch (e) {}
+            }
+          }
+        }
+        return res.end();
+      }
+    } catch (err) {
+      console.error("Anthropic API error:", err);
+    }
+  }
+
+  // Fallback / Simulated Response
+  let responseText = "";
+
+  if (queryLower.includes('available') || queryLower.includes('availability')) {
+    responseText = "Abakwe Carrington is currently available for remote systems architecture, backend infrastructure, and platform engineering roles. He has capacity for select high-impact contract consulting engagements.\n\nHis primary working hours align globally, and he routinely handles cross-timezone coordination with clients in North America, Europe, and APAC with a minimum of 4 hours daily synchronous overlap.\n\nIf you have a potential fit, you can reach him directly at abakwecarrington@gmail.com or submit details through the contact form on this site.";
+  } else if (queryLower.includes('engage') || queryLower.includes('structure') || queryLower.includes('rate') || queryLower.includes('contract')) {
+    responseText = "Carrington structures engagements flexibly to suit the scope of the project. For ongoing development and advisory, he typically works on a weekly or monthly retainer model. For well-defined, short-term engineering deliverables, he works against fixed-price milestones.\n\nHe ensures clear service boundary agreements, weekly progression updates, and structured handoff documentation to ensure internal engineering teams are set up to successfully maintain and extend the system post-launch.";
+  } else if (queryLower.includes('timezone') || queryLower.includes('remote') || queryLower.includes('communicate')) {
+    responseText = "Yes, Carrington works fully remote and has done so for over 5 years. He coordinates seamlessly with clients globally. He communicates daily via Slack, Discord, email, and handles structured reviews through GitHub pull requests.\n\nHe operates with high-bandwidth documentation, ensuring every system decision is transparent and archived.";
+  } else if (queryLower.includes('similar') || queryLower.includes('relevant') || queryLower.includes('experience') || queryLower.includes('project')) {
+    responseText = "Carrington has engineered multiple production-ready products. Most recently, he built RecoverDerm, a HIPAA-compliant healthcare platform on AWS, reducing vulnerabilities by 60% and manual workflow by 40%.\n\nHe also built Orion, a distributed surveillance system across three microservices, connecting embedded camera hardware with a live WebRTC dashboard over WebSockets. Another notable project is Wytnest, a multi-tenant video testimonial collection SaaS with cloud-based HLS video streaming and Supabase RLS isolation.";
+  } else if (queryLower.includes('ai') || queryLower.includes('vision') || queryLower.includes('embedded') || queryLower.includes('robot')) {
+    responseText = "Abakwe has deep experience integrating AI models and embedded pipelines. In his NextGen Robotics role, he built Orion-Core, which streams H.264 video from cameras using GStreamer/OpenCV and uses Protobuf binary serialization to push system telemetry to a Django Channels middleware.\n\nHe is currently implementing YOLOv8 pipeline leak detection on thermal sensor feeds for automated alert notifications.";
+  } else if (queryLower.includes('hipaa') || queryLower.includes('regulated') || queryLower.includes('compliance')) {
+    responseText = "Carrington has strong compliance expertise. While building RecoverDerm, he implemented strict end-to-end encryption for patient records, role-based access permissions, secure JWT refresh token rotations, and automated audit logs.\n\nHe designs databases and server communication pathways around a zero-trust model to meet rigorous international data compliance requirements.";
+  } else if (queryLower.includes('speed') || queryLower.includes('fast') || queryLower.includes('deliver') || queryLower.includes('ship')) {
+    responseText = "His engineering motto is momentum over perfection. He prefers building modular, cleanly separated services that can be shipped quickly and iterated upon based on production metrics, rather than spending months planning a bloated monolith.";
+  } else if (queryLower.includes('stack') || queryLower.includes('technologies') || queryLower.includes('languages') || queryLower.includes('specialise')) {
+    responseText = "His primary technical specialization lies in Backend Architecture and Cloud Infrastructure. His backend toolkit includes Go, Python (Django, Django Channels, Flask), Node.js, and PostgreSQL/Redis.\n\nOn the cloud and infrastructure layer, he specializes in AWS, Docker, microservices orchestration, CI/CD pipelines, and secure WebSockets.\n\nAdditionally, he delivers high-end frontends using React, Next.js, Framer Motion, and GSAP scroll animations.";
+  } else {
+    responseText = "Hello! I am Carrington's assistant. Abakwe Carrington is an Infrastructure & Systems Architect specializing in cloud infrastructure, real-time streaming pipelines, and fault-tolerant backends.\n\nOver his career, he has shipped over 17 production systems. He is currently open to remote engineering roles and consulting contracts.\n\nFeel free to ask about his technical stack, embedded AI work, HIPAA compliance projects, or drop a message in the contact form to connect with him directly.";
+  }
+
+  const words = responseText.split(' ');
+  let index = 0;
+  const interval = setInterval(() => {
+    if (index < words.length) {
+      const chunk = words.slice(index, index + 3).join(' ') + ' ';
+      res.write(chunk);
+      index += 3;
+    } else {
+      clearInterval(interval);
+      res.end();
+    }
+  }, 45);
+});
+
 // REST API endpoint to register click interaction
 app.post('/api/click', (req, res) => {
   totalVisits += 1;

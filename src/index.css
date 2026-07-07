@@ -1,15 +1,42 @@
 /* Google Fonts Import */
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
 
+/* Satoshi Variable */
+@font-face {
+  font-family: 'Satoshi';
+  src: url('/fonts/Satoshi-Variable.woff2') format('woff2');
+  font-weight: 300 900;
+  font-display: swap;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Satoshi';
+  src: url('/fonts/Satoshi-VariableItalic.woff2') format('woff2');
+  font-weight: 300 900;
+  font-display: swap;
+  font-style: italic;
+}
+
 @import "tailwindcss";
 
 @theme {
   --font-sans: 'Plus Jakarta Sans', sans-serif;
   --font-display: 'Outfit', sans-serif;
+  --font-satoshi: 'Satoshi', system-ui, -apple-system, sans-serif;
 
   --color-accent: rgb(var(--accent-primary));
   --color-accent-hover: rgb(var(--accent-secondary));
   --color-accent-glow: var(--accent-glow);
+
+  --color-ink: #0A0A0A;
+  --color-ink-60: rgba(10,10,10,0.60);
+  --color-ink-40: rgba(10,10,10,0.40);
+  --color-ink-20: rgba(10,10,10,0.20);
+  --color-ink-10: rgba(10,10,10,0.10);
+  --color-canvas: #FFFFFF;
+  --color-off: #F5F5F3;
+  --color-dark: #0A0A0A;
+  --color-on-dark: #FFFFFF;
 
   --animate-float-slow: float-slow 8s ease-in-out infinite;
   --animate-float-reverse: float-reverse 10s ease-in-out infinite;
@@ -234,4 +261,115 @@ h6 {
 
 .animate-fade-in {
   animation: fadeIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+
+
+/* Projects: mobile cube + card centering */
+.projects-cube-scene {
+  transition: padding-top 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+}
+@media (max-width: 767px) {
+  .projects-cube-scene.scene-active {
+    padding-top: clamp(5.5rem, 15vw, 7rem);
+  }
+}
+
+/* Custom Cursor follow */
+@media (pointer: fine) and (min-width: 768px) {
+  * {
+    cursor: none !important;
+  }
+  
+  .custom-cursor-dot {
+    position: fixed;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    background: conic-gradient(red, orange, yellow, green, blue, indigo, violet, red);
+    animation: spinCursor 2s linear infinite;
+    transition: width 0.15s, height 0.15s;
+  }
+
+  .custom-cursor-ring {
+    position: fixed;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    z-index: 9998;
+    transition: transform 0.08s ease-out, width 0.2s, height 0.2s, opacity 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    overflow: hidden;
+  }
+
+  /* Rainbow spinning outer ring */
+  .custom-cursor-ring::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: conic-gradient(red, orange, yellow, green, blue, indigo, violet, red);
+    animation: spinCursor 2.5s linear infinite;
+  }
+
+  /* Inner cutout matching page background */
+  .custom-cursor-ring::after {
+    content: '';
+    position: absolute;
+    width: calc(100% - 4px); /* 2px border width */
+    height: calc(100% - 4px);
+    border-radius: 50%;
+    background-color: #0c0d10;
+    transition: width 0.2s, height 0.2s;
+  }
+
+  .custom-cursor-dot.hovered {
+    width: 12px;
+    height: 12px;
+  }
+
+  .custom-cursor-ring.hovered {
+    width: 48px;
+    height: 48px;
+  }
+
+  .custom-cursor-ring.hovered::after {
+    width: calc(100% - 6px); /* 3px border width on hover */
+    height: calc(100% - 6px);
+  }
+
+  .custom-cursor-dot.clicked {
+    transform: translate(-50%, -50%) scale(0.4);
+  }
+
+  .custom-cursor-ring.clicked {
+    width: 75px;
+    height: 75px;
+    opacity: 0;
+    transition: width 0.28s cubic-bezier(0.1, 0.8, 0.3, 1), height 0.28s cubic-bezier(0.1, 0.8, 0.3, 1), opacity 0.28s ease-out;
+  }
+
+  .custom-cursor-ring.clicked::after {
+    width: calc(100% - 10px); /* 5px border width on click splash */
+    height: calc(100% - 10px);
+    transition: width 0.28s, height 0.28s;
+  }
+}
+
+@keyframes spinCursor {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
