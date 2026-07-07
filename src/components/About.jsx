@@ -117,7 +117,7 @@ const About = () => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
           {/* Left Side: Summary & Education */}
           <div className="lg:col-span-5 space-y-8 text-left">
-            <div className="glass-card p-8 rounded-2xl">
+            <div className="glass-card p-6 sm:p-8 rounded-2xl">
               <h3 className="text-xl font-bold text-white mb-4 flex items-center gap-2 select-none">
                 <span className="w-2 h-2 rounded-full bg-accent" />
                 <LetterHover text="Professional Summary" />
@@ -142,7 +142,7 @@ const About = () => {
             </div>
 
             {/* Education Box */}
-            <div className="glass-card p-8 rounded-2xl relative overflow-hidden group">
+            <div className="glass-card p-6 sm:p-8 rounded-2xl relative overflow-hidden group">
               <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-accent/10 to-transparent rounded-full -mr-6 -mt-6 transition-transform duration-500 group-hover:scale-125" />
               <h3 className="text-xl font-bold text-white mb-4 flex items-center gap-2.5 select-none">
                 <BookOpen className="w-5 h-5 text-accent" />

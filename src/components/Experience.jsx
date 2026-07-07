@@ -63,14 +63,14 @@ const Experience = ({ isModal = false }) => {
         </div>
 
         {/* Timeline Layout */}
-        <div className="relative border-l border-gray-800 ml-4 md:ml-12 pl-6 md:pl-10 space-y-12">
+        <div className="relative border-l border-gray-800 ml-2 sm:ml-6 md:ml-12 pl-4 sm:pl-8 md:pl-10 space-y-12">
           {/* Pulsating Indicator Node */}
           <div className="absolute -left-2.5 top-1.5 w-5 h-5 rounded-full bg-accent border-4 border-[#0c0d10] shadow-lg shadow-accent/50 flex items-center justify-center">
             <span className="w-1.5 h-1.5 rounded-full bg-white animate-ping" />
           </div>
 
           {/* Job Overview Card */}
-          <div className="glass-card p-6 sm:p-8 rounded-2xl relative">
+          <div className="glass-card p-4 sm:p-8 rounded-2xl relative">
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
               <div>
                 <span className="inline-flex items-center space-x-2 text-xs font-semibold px-2.5 py-1 bg-accent/10 border border-accent/20 text-accent rounded-full mb-3">
@@ -105,7 +105,7 @@ const Experience = ({ isModal = false }) => {
             {/* Achievement Blocks Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {keyAchievements.map((item, idx) => (
-                <div key={idx} className="bg-gray-950/60 border border-gray-850 p-6 rounded-xl hover:border-accent/20 transition-all duration-305 text-left flex flex-col justify-between">
+                <div key={idx} className="bg-gray-950/60 border border-gray-850 p-4 sm:p-6 rounded-xl hover:border-accent/20 transition-all duration-305 text-left flex flex-col justify-between">
                   <div>
                     <div className="flex items-center space-x-3 mb-3 select-none">
                       <div className="p-2 rounded-lg bg-gray-900 border border-white/5">

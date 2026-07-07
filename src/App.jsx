@@ -16,11 +16,38 @@ function App() {
   const [cursorPos, setCursorPos] = useState({ x: -100, y: -100 });
   const [cursorClicked, setCursorClicked] = useState(false);
   const [cursorHovered, setCursorHovered] = useState(false);
+  const [showCustomCursor, setShowCustomCursor] = useState(false);
   
   const socketRef = useRef(null);
 
-  // Setup custom mouse cursor tracking
+  // Detect pointer capability to avoid custom cursor lag/glitches on touch devices
   useEffect(() => {
+    const mediaQuery = window.matchMedia('(pointer: fine) and (min-width: 768px)');
+    const updateCursorVisibility = () => {
+      setShowCustomCursor(mediaQuery.matches);
+    };
+
+    updateCursorVisibility();
+    
+    if (mediaQuery.addEventListener) {
+      mediaQuery.addEventListener('change', updateCursorVisibility);
+    } else {
+      mediaQuery.addListener(updateCursorVisibility);
+    }
+
+    return () => {
+      if (mediaQuery.removeEventListener) {
+        mediaQuery.removeEventListener('change', updateCursorVisibility);
+      } else {
+        mediaQuery.removeListener(updateCursorVisibility);
+      }
+    };
+  }, []);
+
+  // Setup custom mouse cursor tracking if enabled
+  useEffect(() => {
+    if (!showCustomCursor) return;
+
     const handleMouseMove = (e) => {
       setCursorPos({ x: e.clientX, y: e.clientY });
     };
@@ -57,7 +84,7 @@ function App() {
       window.removeEventListener('mouseup', handleMouseUp);
       observer.disconnect();
     };
-  }, []);
+  }, [showCustomCursor]);
 
   // Setup WebSocket connection to Node backend
   useEffect(() => {
@@ -160,20 +187,24 @@ function App() {
         </div>
 
         {/* Custom Custom Cursor Follower */}
-        <div
-          className={`custom-cursor-dot ${cursorClicked ? 'clicked' : ''} ${cursorHovered ? 'hovered' : ''}`}
-          style={{
-            left: `${cursorPos.x}px`,
-            top: `${cursorPos.y}px`,
-          }}
-        />
-        <div
-          className={`custom-cursor-ring ${cursorClicked ? 'clicked' : ''} ${cursorHovered ? 'hovered' : ''}`}
-          style={{
-            left: `${cursorPos.x}px`,
-            top: `${cursorPos.y}px`,
-          }}
-        />
+        {showCustomCursor && (
+          <>
+            <div
+              className={`custom-cursor-dot ${cursorClicked ? 'clicked' : ''} ${cursorHovered ? 'hovered' : ''}`}
+              style={{
+                left: `${cursorPos.x}px`,
+                top: `${cursorPos.y}px`,
+              }}
+            />
+            <div
+              className={`custom-cursor-ring ${cursorClicked ? 'clicked' : ''} ${cursorHovered ? 'hovered' : ''}`}
+              style={{
+                left: `${cursorPos.x}px`,
+                top: `${cursorPos.y}px`,
+              }}
+            />
+          </>
+        )}
       </div>
     </>
   );

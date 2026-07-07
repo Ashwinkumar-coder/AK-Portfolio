@@ -28,7 +28,7 @@ const Hero = ({ activeTheme, setActiveTheme, socket }) => {
             <LetterHover text="Hello," /> <LetterHover text="I'm" />
           </h2>
 
-          <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-white select-none">
+          <h1 className="text-3xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-white select-none">
             <LetterHover text="ASHWIN KUMAR B" className="text-gradient" />
           </h1>
 
@@ -107,7 +107,7 @@ const Hero = ({ activeTheme, setActiveTheme, socket }) => {
         {/* Right: Profile Portrait */}
         <div className="lg:col-span-5 w-full flex flex-col items-center gap-6">
           {/* Portrait Container */}
-          <div className="relative w-80 h-80 sm:w-96 sm:h-96 lg:w-[360px] lg:h-[380px] rounded-2xl overflow-hidden border border-white/5 shadow-2xl group transition-all duration-500 hover:border-accent/40 hover:shadow-accent/10">
+          <div className="relative w-full max-w-[320px] aspect-square sm:w-96 sm:h-96 lg:w-[360px] lg:h-[380px] rounded-2xl overflow-hidden border border-white/5 shadow-2xl group transition-all duration-500 hover:border-accent/40 hover:shadow-accent/10">
             <img
               src="ashwin.png"
               alt="Ashwin Kumar B"
