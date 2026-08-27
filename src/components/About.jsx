@@ -11,6 +11,7 @@ import {
   PostgresIcon, MySQLIcon, MongoDBIcon, DockerIcon, AWSIcon, GitIcon,
   OpenAIIcon, JiraIcon, PostmanIcon
 } from './TechIcons';
+import resumePDF from '../assets/Ashwin_Kumar_Resume.pdf';
 
 // Helper to map skill names to specific visual brand icons
 const getSkillIcon = (skillName) => {
@@ -66,32 +67,32 @@ const About = () => {
     {
       category: 'Frontend',
       icon: <Layout className="w-5 h-5 text-accent" />,
-      skills: ['React.js', 'JavaScript', 'HTML5', 'CSS3', 'Tailwind CSS', 'Vue.js', 'Redux Toolkit'],
+      skills: ['React.js', 'JavaScript', 'HTML5', 'CSS3', 'Tailwind CSS', 'Bootstrap', 'Redux Toolkit', 'React Router'],
     },
     {
       category: 'Backend',
       icon: <Server className="w-5 h-5 text-accent" />,
-      skills: ['Node.js', 'Python', 'Express.js'],
+      skills: ['Node.js', 'Python', 'Express.js', 'FastAPI', 'REST APIs'],
     },
     {
       category: 'Database',
       icon: <Database className="w-5 h-5 text-accent" />,
-      skills: ['PostgreSQL', 'MySQL', 'MongoDB', 'Vector Database'],
+      skills: ['PostgreSQL', 'MySQL', 'MongoDB', 'Redis', 'Vector Database'],
     },
     {
-      category: 'Tools & Platforms',
+      category: 'Cloud & Platforms',
       icon: <Settings className="w-5 h-5 text-accent" />,
-      skills: ['AWS', 'Docker', 'Hostinger', 'Git', 'GitHub', 'Jira', 'Postman'],
+      skills: ['AWS', 'AWS S3', 'Docker', 'Hostinger', 'Nginx', 'CI/CD Basics'],
     },
     {
-      category: 'AI & Automation',
+      category: 'AI & Systems',
       icon: <Cpu className="w-5 h-5 text-accent" />,
-      skills: ['OpenAI API Integration', 'OpenClaw', 'AI Workflow Automation', 'AI Agents Basics'],
+      skills: ['AWS Bedrock', 'OpenAI API', 'LLM Integration', 'RAG', 'Vector Search', 'AI Agents'],
     },
     {
-      category: 'Other Essentials',
+      category: 'Tools & Essentials',
       icon: <ShieldCheck className="w-5 h-5 text-accent" />,
-      skills: ['REST APIs', 'JWT Authentication', 'Deployment', 'CI/CD Basics', 'Responsive Design'],
+      skills: ['Git', 'GitHub', 'Jira', 'Postman', 'JWT Auth', 'RBAC', 'Responsive Design'],
     },
   ];
 
@@ -123,15 +124,15 @@ const About = () => {
                 <LetterHover text="Professional Summary" />
               </h3>
               <p className="text-gray-300 leading-relaxed font-sans mb-4 select-none">
-                <LetterHover text="I am a Full Stack Developer with over 1.5 years of industry experience. I specialize in designing, developing, and deploying scalable web applications. My sweet spot lies at the junction of backend logic and frontend interactivity." />
+                Full Stack Developer with 1.8+ years of experience in designing, developing, and deploying web applications using React.js, Node.js, Python, and FastAPI. Strong problem-solving skills with experience in debugging production issues.
               </p>
               <p className="text-gray-300 leading-relaxed font-sans mb-6 select-none">
-                <LetterHover text="I have a proven record of building and managing responsive layouts, REST APIs, and authentication pipelines, collaborating in agile environments, and implementing clean code methodologies." />
+                Experienced in building responsive UIs, secure REST APIs, microservices, and implementing AI/LLM integrations, RAG, vector search, and AI-powered workflows.
               </p>
               
               <div className="pt-2">
                 <a
-                  href="/resume/resume.pdf"
+                  href={resumePDF}
                   download="Ashwin_Kumar_Resume.pdf"
                   className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-accent/10 border border-accent/25 hover:bg-accent text-white font-semibold transition-all duration-300 cursor-pointer text-sm"
                 >

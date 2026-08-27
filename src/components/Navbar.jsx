@@ -53,9 +53,8 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
-        scrolled ? 'glass-nav py-3' : 'bg-transparent py-5'
-      }`}
+      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${scrolled ? 'glass-nav py-3' : 'bg-transparent py-5'
+        }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
@@ -77,11 +76,10 @@ const Navbar = () => {
               <button
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}
-                className={`font-sans font-medium text-sm transition-all duration-300 relative py-1 cursor-pointer ${
-                  activeSection === item.id
+                className={`font-sans font-medium text-sm transition-all duration-300 relative py-1 cursor-pointer ${activeSection === item.id
                     ? 'text-accent font-semibold'
                     : 'text-gray-400 hover:text-white'
-                }`}
+                  }`}
               >
                 {item.label}
                 {activeSection === item.id && (
@@ -111,22 +109,20 @@ const Navbar = () => {
 
       {/* Mobile Dropdown Menu */}
       <div
-        className={`md:hidden absolute top-full left-0 w-full bg-gray-950/95 backdrop-blur-lg border-b border-white/5 transition-all duration-300 ease-in-out max-h-[calc(100vh-5rem)] overflow-y-auto ${
-          isOpen
+        className={`md:hidden absolute top-full left-0 w-full bg-gray-950/95 backdrop-blur-lg border-b border-white/5 transition-all duration-300 ease-in-out max-h-[calc(100vh-5rem)] overflow-y-auto ${isOpen
             ? 'opacity-100 translate-y-0 pointer-events-auto'
             : 'opacity-0 -translate-y-2 pointer-events-none'
-        }`}
+          }`}
       >
         <div className="px-4 pt-2 pb-6 space-y-3 sm:px-3">
           {navItems.map((item) => (
             <button
               key={item.id}
               onClick={() => scrollToSection(item.id)}
-              className={`block w-full text-left px-4 py-3 rounded-lg text-base font-medium transition-colors cursor-pointer ${
-                activeSection === item.id
+              className={`block w-full text-left px-4 py-3 rounded-lg text-base font-medium transition-colors cursor-pointer ${activeSection === item.id
                   ? 'bg-accent/10 text-accent font-semibold border-l-4 border-accent'
                   : 'text-gray-400 hover:bg-gray-900 hover:text-white'
-              }`}
+                }`}
             >
               {item.label}
             </button>

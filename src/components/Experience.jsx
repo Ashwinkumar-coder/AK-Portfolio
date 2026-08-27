@@ -10,34 +10,40 @@ const Experience = ({ isModal = false }) => {
 
   const keyAchievements = [
     {
-      title: "Frontend Engineering & Layout Design",
-      icon: <Layout className="w-5 h-5 text-accent" />,
-      description: "Built reusable React UI components, complex dashboards, and responsive layout grids using Tailwind CSS and modern web standard practices.",
-      highlights: ["Figma to functional React translation", "Highly responsive, cross-browser compatible layouts", "Reusable form controllers & state validation templates"]
-    },
-    {
-      title: "API Design & Backend Security",
+      title: "Full-Stack & Microservices",
       icon: <Server className="w-5 h-5 text-accent" />,
-      description: "Designed and developed scalable REST APIs in Node.js (Express) and Python. Implemented token authorization (JWT) and role-based access controllers (RBAC) to protect sensitive client modules.",
-      highlights: ["JSON Web Token (JWT) workflow integration", "Secure router authentication guards", "Unified error handling middleware configurations"]
+      description: "Developed full-stack web applications and microservices using React.js, Node.js, Python, and FastAPI.",
+      highlights: ["React.js, Node.js, Python & FastAPI", "Scalable microservices architecture"]
     },
     {
-      title: "Database Performance & Optimization",
-      icon: <Database className="w-5 h-5 text-accent" />,
-      description: "Designed schemas, relational database tables, and document collections using PostgreSQL and MongoDB. Focused heavily on writing optimized SQL/Aggregation queries.",
-      highlights: ["Reduced API load/response times with indexed queries", "Handled CRUD operations and data-migrations", "Created complex data aggregation reports for dashboard modules"]
+      title: "Frontend & Responsive UIs",
+      icon: <Layout className="w-5 h-5 text-accent" />,
+      description: "Built responsive UIs with React.js, Tailwind CSS, and Redux Toolkit, ensuring seamless cross-device experiences.",
+      highlights: ["Tailwind CSS & Redux Toolkit", "Seamless cross-device experiences"]
     },
     {
-      title: "AWS Cloud & Deployment Infrastructure",
+      title: "API Design & Security",
       icon: <ShieldCheck className="w-5 h-5 text-accent" />,
-      description: "Deployed production web platforms and managed cloud servers on Amazon Web Services (AWS) and Hostinger, establishing environment parameters and system dependencies.",
-      highlights: ["AWS EC2 instance management and Node server daemon scripting", "DNS configuration and SSL certificate installations", "Environment variable configurations for Dev/Staging/Production"]
+      description: "Designed and integrated secure REST APIs with JWT authentication and role-based access control (RBAC).",
+      highlights: ["JSON Web Token (JWT) integration", "Role-based access control (RBAC)"]
     },
     {
-      title: "Agile Collaboration & Stability",
+      title: "Database & Optimization",
+      icon: <Database className="w-5 h-5 text-accent" />,
+      description: "Developed and optimized database-driven applications using PostgreSQL, MySQL, MongoDB, and Redis.",
+      highlights: ["PostgreSQL, MySQL, MongoDB", "Redis integration"]
+    },
+    {
+      title: "AI & API Integrations",
+      icon: <Zap className="w-5 h-5 text-accent" />,
+      description: "Integrated third-party APIs for payments, communications, and LLM-powered AI functionalities.",
+      highlights: ["LLM-powered AI integrations", "Payments & communications APIs"]
+    },
+    {
+      title: "Cloud & Deployment",
       icon: <Users className="w-5 h-5 text-accent" />,
-      description: "Collaborated inside Agile development environments using Jira to complete sprint cycles. Resolved production bugs swiftly and improved system uptime.",
-      highlights: ["Cross-functional syncs with designers & QA engineers", "Conducted root cause analysis for live bug fixes", "Improved overall code stability and performance metrics"]
+      description: "Handled end-to-end deployment on AWS and Hostinger while optimizing API performance and resolving complex production bugs.",
+      highlights: ["AWS and Hostinger deployments", "API performance optimization"]
     }
   ];
 
@@ -99,7 +105,7 @@ const Experience = ({ isModal = false }) => {
             </div>
 
             <p className="text-gray-300 font-sans mb-8 leading-relaxed text-left border-l-2 border-accent/30 pl-4 italic select-none">
-              <LetterHover text='"Developing, configuring, and optimizing production-grade modules in collaborative Agile sprints, delivering scalable web apps with Node, React, and AWS."' />
+              "Developing, configuring, and optimizing production-grade modules in collaborative Agile sprints, delivering scalable web apps with Node, React, and AWS."
             </p>
 
             {/* Achievement Blocks Grid */}

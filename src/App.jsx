@@ -6,7 +6,8 @@ import Experience from './components/Experience';
 import Projects from './components/Projects';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
-import SplashCursor from './components/SplashCursor';
+import StarCursor from './components/StarCursor';
+import CrackerBurst from './components/CrackerBurst';
 import { Eye } from 'lucide-react';
 import { io } from 'socket.io-client';
 
@@ -17,7 +18,7 @@ function App() {
   const [cursorClicked, setCursorClicked] = useState(false);
   const [cursorHovered, setCursorHovered] = useState(false);
   const [showCustomCursor, setShowCustomCursor] = useState(false);
-  
+
   const socketRef = useRef(null);
 
   // Detect pointer capability to avoid custom cursor lag/glitches on touch devices
@@ -28,7 +29,7 @@ function App() {
     };
 
     updateCursorVisibility();
-    
+
     if (mediaQuery.addEventListener) {
       mediaQuery.addEventListener('change', updateCursorVisibility);
     } else {
@@ -126,7 +127,7 @@ function App() {
     return () => {
       try {
         delete window.scrollToSection;
-      } catch (e) {}
+      } catch (e) { }
       document.removeEventListener('click', handleGlobalInteractionClick);
       socket.disconnect();
     };
@@ -134,21 +135,22 @@ function App() {
 
   return (
     <>
-      <SplashCursor />
+      {showCustomCursor && <StarCursor />}
+      <CrackerBurst />
       <div className={`min-h-screen bg-[#0c0d10] text-gray-100 flex flex-col theme-${activeTheme} selection:bg-accent/30 selection:text-accent-hover`}>
         <Navbar activeTheme={activeTheme} />
         <main className="flex-grow">
-          <Hero 
-            activeTheme={activeTheme} 
-            setActiveTheme={setActiveTheme} 
-            socket={socketRef.current} 
+          <Hero
+            activeTheme={activeTheme}
+            setActiveTheme={setActiveTheme}
+            socket={socketRef.current}
           />
           <About activeTheme={activeTheme} />
           <Experience activeTheme={activeTheme} />
           <Projects activeTheme={activeTheme} />
-          <Contact 
-            activeTheme={activeTheme} 
-            setActiveTheme={setActiveTheme} 
+          <Contact
+            activeTheme={activeTheme}
+            setActiveTheme={setActiveTheme}
             socket={socketRef.current}
           />
         </main>
@@ -186,25 +188,6 @@ function App() {
           </div>
         </div>
 
-        {/* Custom Custom Cursor Follower */}
-        {showCustomCursor && (
-          <>
-            <div
-              className={`custom-cursor-dot ${cursorClicked ? 'clicked' : ''} ${cursorHovered ? 'hovered' : ''}`}
-              style={{
-                left: `${cursorPos.x}px`,
-                top: `${cursorPos.y}px`,
-              }}
-            />
-            <div
-              className={`custom-cursor-ring ${cursorClicked ? 'clicked' : ''} ${cursorHovered ? 'hovered' : ''}`}
-              style={{
-                left: `${cursorPos.x}px`,
-                top: `${cursorPos.y}px`,
-              }}
-            />
-          </>
-        )}
       </div>
     </>
   );

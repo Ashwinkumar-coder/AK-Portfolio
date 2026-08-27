@@ -8,49 +8,47 @@ const Projects = () => {
 
   const projectsData = [
     {
-      title: "HealthCare Platform",
-      subtitle: "Doctor Appointment & Diagnostic Management System",
-      timeline: "Dec 2024 – May 2025",
-      image: "healthcare.png",
-      tech: ["React.js", "Redux Toolkit", "Tailwind CSS"],
-      description: "Developed a comprehensive digital healthcare portal supporting patient medical appointment booking (online and walk-in) and diagnostic facility tracking.",
+      title: "AI Testing Orchestrator",
+      subtitle: "AI-Powered Test Automation & Self-Healing System",
+      timeline: "Aug 2026 – Present",
+      image: "ai_testing.png",
+      tech: ["React.js", "Python", "FastAPI", "Playwright", "PostgreSQL", "AWS Bedrock", "WebSockets"],
+      description: "An AI-powered testing orchestrator that analyzes Git repositories and Swagger schemas to autonomously generate BDD scenarios and Playwright test scripts.",
       details: [
-        "Doctor Search & Scheduling: Real-time query lookups based on medical specialization and availability calendar.",
-        "Role-Based Dashboards: Custom dashboard dashboards for patients, doctors, and lab technicians.",
-        "Diagnostic Modules: Built booking processes for lab tests and diagnostic report downloading.",
-        "Centralized State: Structured Redux Toolkit to sync global patient data and minimize component re-renders."
+        "LLM Integration: Integrated AWS Bedrock (DeepSeek) using Model Context Protocol (MCP) and ReAct loops.",
+        "Sandbox Execution: Built backend with FastAPI handling isolated Playwright executions in ephemeral environments.",
+        "Real-Time & Security: Implemented WebSocket execution tracking and AES-encrypted credential vault.",
+        "Self-Healing RCA: AI-powered Root Cause Analysis capturing DOM snapshots and traces to generate code patches."
       ],
       demoLink: "#",
       githubLink: "#"
     },
     {
-      title: "Tifoh Meeting Space",
-      subtitle: "Smart Meeting Room Booking & Synchronization System",
-      timeline: "Jun 2025 – Nov 2025",
-      image: "tifoh.png",
-      tech: ["React.js", "Node.js", "REST APIs", "Google Calendar API", "Microsoft Graph API"],
-      description: "Built a multi-tenant enterprise conference space booking platform synchronized in real-time with outer calendars.",
+      title: "GTMer – Client Project",
+      subtitle: "AI-Powered Go-To-Market Automation Platform",
+      timeline: "Oct 2025 – Jul 2026",
+      image: "gtmer.png",
+      tech: ["React.js", "Python", "FastAPI", "PostgreSQL", "Redis", "AWS Bedrock", "Docker"],
+      description: "An AI-powered Go-To-Market platform utilizing a microservices architecture to automate complex sales outreach workflows.",
       details: [
-        "Calendar Integrations: Sync schedules bidirectionally with Google Calendar and Microsoft Graph APIs.",
-        "Secure RBAC: Implemented JSON Web Token (JWT) credentials and strict role-based access levels.",
-        "Real-Time Tracking: Rendered real-time occupancy updates and availability slots.",
-        "Scalable Backend: Configured Node/Express route handlers to process parallel reservations efficiently."
+        "Lead Intelligence: Integrated AWS Bedrock LLMs for ICP scoring, competitor analysis, and personalized campaigns.",
+        "RAG Conversational Chatbot: Built robust RAG-based chatbot utilizing vector search for real-time sales assistance.",
+        "Backend Infrastructure: Managed PostgreSQL & Redis with background workers for data scraping and metered billing."
       ],
       demoLink: "#",
       githubLink: "#"
     },
     {
-      title: "PET Care Registry",
-      subtitle: "Government Pet Registration & Vaccination Tracking",
-      timeline: "Dec 2025 – Present",
+      title: "Chennai Pet Care System",
+      subtitle: "Pet Registration & Animal Management Platform",
+      timeline: "Dec 2024 – Sep 2025",
       image: "petcare.png",
-      tech: ["React.js", "Redux", "Node.js"],
-      description: "Constructed a civic portal for registry tracking of domestic pets, vaccine history logs, and veterinarian appointments.",
+      tech: ["React.js", "Redux Toolkit", "Bootstrap", "Leaflet", "REST APIs"],
+      description: "A comprehensive, multi-portal Pet Registration and Animal Management Platform supporting distinct workflows for citizens, licensing officers, and admins.",
       details: [
-        "Vaccine Scheduling: Core modules managing vaccination histories and automatic email alerts.",
-        "Reusable Forms: Constructed custom form validation libraries to capture pet metrics.",
-        "Admin Console: Designed table filters, search filters, and batch status controls for admin clerks.",
-        "Security Integrations: Configured encrypted user login tunnels and secure server database operations."
+        "Scalable Modules: Architected modules for managing pet licenses, travel certificates, microchips, and extensive profiles.",
+        "Spatial Data Integration: Implemented an interactive, map-based grievance reporting system leveraging Leaflet.",
+        "Complex UIs: Built dynamic data tables and administrative dashboards using React.js and Redux Toolkit."
       ],
       demoLink: "#",
       githubLink: "#"
@@ -84,33 +82,26 @@ const Projects = () => {
               onMouseLeave={() => setHoveredIndex(null)}
               className="glass-card rounded-2xl overflow-hidden flex flex-col justify-between group"
             >
-              {/* Image Section */}
-              <div className="relative h-48 overflow-hidden bg-gray-900">
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-108"
-                />
-                {/* Timeline Overlay */}
-                <div className="absolute top-3 right-3 bg-gray-950/80 border border-white/5 backdrop-blur-md px-2.5 py-1 rounded-lg text-[10px] text-accent font-semibold font-sans">
-                  {project.timeline}
+              {/* Project Header */}
+              <div className="relative p-6 sm:p-8 pb-4 flex flex-col items-start justify-between border-b border-gray-900/50 mb-4 group-hover:bg-accent/5 transition-colors duration-500">
+                <div className="w-full flex justify-between items-start mb-2">
+                  <h3 className="text-xl sm:text-2xl font-bold text-white tracking-tight leading-tight group-hover:text-accent-hover transition-colors">
+                    {project.title}
+                  </h3>
+                  <div className="bg-gray-950/80 border border-white/5 px-2.5 py-1 rounded-lg text-[10px] text-accent font-semibold font-sans shrink-0">
+                    {project.timeline}
+                  </div>
                 </div>
-                {/* Dark Vignette Overlay on Hover */}
-                <div className="absolute inset-0 bg-gradient-to-t from-gray-950 via-transparent to-transparent opacity-60" />
+                <p className="text-xs text-accent font-medium mt-1 leading-relaxed font-sans">
+                  {project.subtitle}
+                </p>
               </div>
 
               {/* Text Section */}
-              <div className="p-6 sm:p-8 flex-grow flex flex-col justify-between text-left">
+              <div className="p-6 sm:p-8 pt-0 flex-grow flex flex-col justify-between text-left">
                 <div>
-                  <h3 className="text-xl font-bold text-white tracking-tight leading-tight group-hover:text-accent-hover transition-colors select-none flex flex-wrap gap-1.5">
-                    <LetterHover text={project.title} />
-                  </h3>
-                  <p className="text-xs text-accent font-medium mt-1 mb-4 leading-relaxed font-sans">
-                    {project.subtitle}
-                  </p>
-
                   <p className="text-xs text-gray-400 leading-relaxed font-sans mb-6 select-none">
-                    <LetterHover text={project.description} />
+                    {project.description}
                   </p>
 
                   {/* Bullet Key Points */}

@@ -4,6 +4,7 @@ import LetterHover from './LetterHover';
 import { GithubIcon, LinkedinIcon } from './SocialIcons';
 import Experience from './Experience';
 import Contact from './Contact';
+import resumePDF from '../assets/Ashwin_Kumar_Resume.pdf';
 
 const Hero = ({ activeTheme, setActiveTheme, socket }) => {
   const [isExperienceOpen, setIsExperienceOpen] = useState(false);
@@ -36,10 +37,8 @@ const Hero = ({ activeTheme, setActiveTheme, socket }) => {
             <LetterHover text="Full Stack Developer" />
           </h3>
 
-          <p className="text-base sm:text-lg text-gray-400 max-w-xl leading-relaxed font-sans select-none flex flex-wrap gap-x-1 gap-y-0.5">
-            <LetterHover text="Full Stack Developer with " />
-            <LetterHover text="1.5+ years of experience" className="text-accent font-semibold" />
-            <LetterHover text="designing, building, and deploying scalable web applications using React.js, Node.js, and Python. Passionate about clean architecture, responsive UIs, and integrating intelligence into modern web experiences." />
+          <p className="text-base sm:text-lg text-gray-400 max-w-xl leading-relaxed font-sans select-none">
+            Full Stack Developer with <span className="text-accent font-semibold">1.8+ years of experience</span> designing, developing, and deploying web applications using React.js, Node.js, Python, and FastAPI. Passionate about AI/LLM integrations, responsive UIs, and robust architectures.
           </p>
 
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 w-full sm:w-auto pt-2">
@@ -69,7 +68,7 @@ const Hero = ({ activeTheme, setActiveTheme, socket }) => {
             </button>
 
             <a
-              href="/resume/resume.pdf"
+              href={resumePDF}
               download="Ashwin_Kumar_Resume.pdf"
               className="glass-card hover:bg-gray-900 border-gray-900 text-white font-semibold px-8 py-4 rounded-xl text-base transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer"
             >
@@ -98,7 +97,7 @@ const Hero = ({ activeTheme, setActiveTheme, socket }) => {
             </a>
             <div className="h-6 w-px bg-gray-800" />
             <div className="flex items-center space-x-2 text-sm text-gray-400">
-              <span className="font-bold text-white text-base">1.5+</span>
+              <span className="font-bold text-white text-base">1.8+</span>
               <span>Years Experience</span>
             </div>
           </div>
