@@ -38,7 +38,7 @@ const Hero = ({ activeTheme, setActiveTheme, socket }) => {
           </h3>
 
           <p className="text-base sm:text-lg text-gray-400 max-w-xl leading-relaxed font-sans select-none">
-            Full Stack Developer with <span className="text-accent font-semibold">1.8+ years of experience</span> designing, developing, and deploying web applications using React.js, Node.js, Python, and FastAPI. Passionate about AI/LLM integrations, responsive UIs, and robust architectures.
+            Full Stack Developer with <span className="text-accent font-semibold">almost 2 years of experience</span> designing, developing, and deploying web applications using React.js, Node.js, Python, and FastAPI. Passionate about AI/LLM integrations, responsive UIs, and robust architectures.
           </p>
 
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 w-full sm:w-auto pt-2">
@@ -97,7 +97,7 @@ const Hero = ({ activeTheme, setActiveTheme, socket }) => {
             </a>
             <div className="h-6 w-px bg-gray-800" />
             <div className="flex items-center space-x-2 text-sm text-gray-400">
-              <span className="font-bold text-white text-base">1.8+</span>
+              <span className="font-bold text-white text-base">~2</span>
               <span>Years Experience</span>
             </div>
           </div>

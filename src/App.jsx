@@ -6,7 +6,6 @@ import Experience from './components/Experience';
 import Projects from './components/Projects';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
-import StarCursor from './components/StarCursor';
 import CrackerBurst from './components/CrackerBurst';
 import { Eye } from 'lucide-react';
 import { io } from 'socket.io-client';
@@ -14,78 +13,8 @@ import { io } from 'socket.io-client';
 function App() {
   const [activeTheme, setActiveTheme] = useState('blue');
   const [liveViewers, setLiveViewers] = useState(1);
-  const [cursorPos, setCursorPos] = useState({ x: -100, y: -100 });
-  const [cursorClicked, setCursorClicked] = useState(false);
-  const [cursorHovered, setCursorHovered] = useState(false);
-  const [showCustomCursor, setShowCustomCursor] = useState(false);
 
   const socketRef = useRef(null);
-
-  // Detect pointer capability to avoid custom cursor lag/glitches on touch devices
-  useEffect(() => {
-    const mediaQuery = window.matchMedia('(pointer: fine) and (min-width: 768px)');
-    const updateCursorVisibility = () => {
-      setShowCustomCursor(mediaQuery.matches);
-    };
-
-    updateCursorVisibility();
-
-    if (mediaQuery.addEventListener) {
-      mediaQuery.addEventListener('change', updateCursorVisibility);
-    } else {
-      mediaQuery.addListener(updateCursorVisibility);
-    }
-
-    return () => {
-      if (mediaQuery.removeEventListener) {
-        mediaQuery.removeEventListener('change', updateCursorVisibility);
-      } else {
-        mediaQuery.removeListener(updateCursorVisibility);
-      }
-    };
-  }, []);
-
-  // Setup custom mouse cursor tracking if enabled
-  useEffect(() => {
-    if (!showCustomCursor) return;
-
-    const handleMouseMove = (e) => {
-      setCursorPos({ x: e.clientX, y: e.clientY });
-    };
-
-    const handleMouseDown = () => setCursorClicked(true);
-    const handleMouseUp = () => setCursorClicked(false);
-
-    const handleHoverStart = () => setCursorHovered(true);
-    const handleHoverEnd = () => setCursorHovered(false);
-
-    window.addEventListener('mousemove', handleMouseMove);
-    window.addEventListener('mousedown', handleMouseDown);
-    window.addEventListener('mouseup', handleMouseUp);
-
-    // Track dynamic hovers on interactive items
-    const setupHoverListeners = () => {
-      const targets = document.querySelectorAll('a, button, [role="button"], input[type="submit"], select');
-      targets.forEach((target) => {
-        target.removeEventListener('mouseenter', handleHoverStart);
-        target.removeEventListener('mouseleave', handleHoverEnd);
-        target.addEventListener('mouseenter', handleHoverStart);
-        target.addEventListener('mouseleave', handleHoverEnd);
-      });
-    };
-
-    setupHoverListeners();
-
-    const observer = new MutationObserver(setupHoverListeners);
-    observer.observe(document.body, { childList: true, subtree: true });
-
-    return () => {
-      window.removeEventListener('mousemove', handleMouseMove);
-      window.removeEventListener('mousedown', handleMouseDown);
-      window.removeEventListener('mouseup', handleMouseUp);
-      observer.disconnect();
-    };
-  }, [showCustomCursor]);
 
   // Setup WebSocket connection to Node backend
   useEffect(() => {
@@ -135,7 +64,6 @@ function App() {
 
   return (
     <>
-      {showCustomCursor && <StarCursor />}
       <CrackerBurst />
       <div className={`min-h-screen bg-[#0c0d10] text-gray-100 flex flex-col theme-${activeTheme} selection:bg-accent/30 selection:text-accent-hover`}>
         <Navbar activeTheme={activeTheme} />

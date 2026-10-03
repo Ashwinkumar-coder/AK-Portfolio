@@ -124,7 +124,7 @@ const About = () => {
                 <LetterHover text="Professional Summary" />
               </h3>
               <p className="text-gray-300 leading-relaxed font-sans mb-4 select-none">
-                Full Stack Developer with 1.8+ years of experience in designing, developing, and deploying web applications using React.js, Node.js, Python, and FastAPI. Strong problem-solving skills with experience in debugging production issues.
+                Full Stack Developer with almost 2 years of experience in designing, developing, and deploying web applications using React.js, Node.js, Python, and FastAPI. Strong problem-solving skills with experience in debugging production issues.
               </p>
               <p className="text-gray-300 leading-relaxed font-sans mb-6 select-none">
                 Experienced in building responsive UIs, secure REST APIs, microservices, and implementing AI/LLM integrations, RAG, vector search, and AI-powered workflows.
